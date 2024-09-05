@@ -5,32 +5,29 @@ import { NEXT_PUBLIC_URL } from './config';
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'Story time',
-    },
-    {
       action: 'tx',
-      label: 'Send Base Sepolia',
+      label: 'Send to Cartesi dApp',
       target: `${NEXT_PUBLIC_URL}/api/tx`,
       postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
     },
   ],
   image: {
-    src: `${NEXT_PUBLIC_URL}/park-3.png`,
+    src: `${NEXT_PUBLIC_URL}/cartesi-machine.png`,
     aspectRatio: '1:1',
   },
   input: {
-    text: 'Tell me a story',
+    text: 'What do you want to calculate?',
   },
   postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
 });
 
 export const metadata: Metadata = {
-  title: 'zizzamia.xyz',
+  title: 'cartesi-frame',
   description: 'LFG',
   openGraph: {
-    title: 'zizzamia.xyz',
+    title: 'cartesi-frame',
     description: 'LFG',
-    images: [`${NEXT_PUBLIC_URL}/park-1.png`],
+    images: [`${NEXT_PUBLIC_URL}/cartesi-machine.png`],
   },
   other: {
     ...frameMetadata,
@@ -40,7 +37,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1>zizzamia.xyz</h1>
+      <h1>Send inputs to Cartesi dApp</h1>
     </>
   );
 }

@@ -1,24 +1,29 @@
 import { FrameRequest, getFrameMessage } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
-import { encodeFunctionData, parseEther } from 'viem';
-import { baseSepolia } from 'viem/chains';
-import BuyMeACoffeeABI from '../../_contracts/BuyMeACoffeeABI';
-import { BUY_MY_COFFEE_CONTRACT_ADDR } from '../../config';
+import { encodeFunctionData } from 'viem';
+import { baseSepolia, foundry } from 'viem/chains';
+import InputBoxABI from '../../_contracts/InputBoxABI';
+import { CARTESI_INPUT_BOX_ADDR, NEYNAR_ONCHAIN_KIT } from '../../config';
 import type { FrameTransactionResponse } from '@coinbase/onchainkit/frame';
 
 async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
   const body: FrameRequest = await req.json();
-  // Remember to replace 'NEYNAR_ONCHAIN_KIT' with your own Neynar API key
-  const { isValid } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
+  const { isValid, message } = await getFrameMessage(body, { neynarApiKey: '9ABF176D-C601-4B63-9CC4-6624427DB2FA' });
 
   if (!isValid) {
     return new NextResponse('Message not valid', { status: 500 });
   }
 
+  const userInput = message.input || ''; // Extract user input from the message
+  console.log("Input message: ", message.input)
+
   const data = encodeFunctionData({
-    abi: BuyMeACoffeeABI,
-    functionName: 'buyCoffee',
-    args: [parseEther('1'), 'Coffee all day!'],
+    abi: InputBoxABI,
+    functionName: 'addInput',
+    args: [
+      '0x11780dFA9c0B1F8C4889BdE71420725476d9e205', // _dapp address
+      `0x${Buffer.from(userInput).toString('hex')}`, // _input as bytes
+    ],
   });
 
   const txData: FrameTransactionResponse = {
@@ -27,10 +32,11 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
     params: {
       abi: [],
       data,
-      to: BUY_MY_COFFEE_CONTRACT_ADDR,
-      value: parseEther('0.00004').toString(), // 0.00004 ETH
+      to: CARTESI_INPUT_BOX_ADDR,
+      value: '0', // No ETH value is sent with this transaction
     },
   };
+  console.log("Tx data: ", txData)
   return NextResponse.json(txData);
 }
 

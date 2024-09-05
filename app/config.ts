@@ -1,4 +1,6 @@
 // use NODE_ENV to not have to change config based on where it's deployed
 export const NEXT_PUBLIC_URL =
   process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://zizzamia.xyz';
-export const BUY_MY_COFFEE_CONTRACT_ADDR = '0xcD3D5E4E498BAb2e0832257569c3Fd4AE439dD6f';
+  //process.env.NODE_ENV == 'development' ? 'https://6549-2409-40d4-4009-4f15-4541-77f5-ffe0-500b.ngrok-free.app' : 'https://zizzamia.xyz';
+export const CARTESI_INPUT_BOX_ADDR = '0x59b22D57D4f067708AB0c00552767405926dc768'
+export const NEYNAR_ONCHAIN_KIT = 'YOUR_NEYNAR_API_KEY'
