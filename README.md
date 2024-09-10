@@ -6,7 +6,14 @@ This project is a fork of https://github.com/Zizzamia/a-frame-in-100-lines
 
 
 ### How does it work?
-[todo: add architecture diagram]
+There are multiple components to the architecture of this integration. Some notable ones that will be frequently used are:
+- **Frame** - The frame is the UI that is rendered in the Farcaster client.
+- **Frame Server** - The frame server is the server that is used to host the frame. It is the entry point for all frame requests including transaction requests, data validation, graphql queries and inspect request to the Cartesi node. It is a Next.js app leveraging Coinbase [OnchainKit](https://onchainkit.xyz) to handle frame requests.
+- **Cartesi Node** - The Cartesi node is the backend that hosts your core application logic inside the Cartesi Machine. It has other components like the GraphQL server and Inspect server to read state of your dApp.
+
+A high-level diagram of the architecture is shown below.
+
+![Cartesi Frame Architecture](public/cartesi-frame-arch.jpg)
 
 ### Steps to run
 
