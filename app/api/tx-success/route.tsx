@@ -111,12 +111,14 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     getFrameHtmlResponse({
       buttons: [
         {
-          label: `Tx: ${transactionId.slice(0, 10)}...`,
+          label: 'Total scream counter',
+          action: 'post',
         },
       ],
       image: {
         src: imageUrl,
       },
+      postUrl: `${NEXT_PUBLIC_URL}/api/inspect-cm`,
     }),
   );
 }
