@@ -16,9 +16,8 @@ const frameMetadata = getFrameMetadata({
     aspectRatio: '1:1',
   },
   input: {
-    text: 'What do you want to calculate?',
+    text: 'What do you want to scream?',
   },
-  postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
 });
 
 export const metadata: Metadata = {

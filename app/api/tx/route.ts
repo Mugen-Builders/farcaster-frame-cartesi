@@ -3,12 +3,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { encodeFunctionData } from 'viem';
 import { baseSepolia, foundry } from 'viem/chains';
 import InputBoxABI from '../../_contracts/InputBoxABI';
-import { CARTESI_INPUT_BOX_ADDR, NEYNAR_ONCHAIN_KIT } from '../../config';
+import { CARTESI_INPUT_BOX_ADDR, CARTESI_DAPP_ADDRESS, NEYNAR_API_KEY } from '../../config';
 import type { FrameTransactionResponse } from '@coinbase/onchainkit/frame';
 
 async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
   const body: FrameRequest = await req.json();
-  const { isValid, message } = await getFrameMessage(body, { neynarApiKey: '9ABF176D-C601-4B63-9CC4-6624427DB2FA' });
+  const { isValid, message } = await getFrameMessage(body, { neynarApiKey: NEYNAR_API_KEY });
 
   if (!isValid) {
     return new NextResponse('Message not valid', { status: 500 });
@@ -21,7 +21,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
     abi: InputBoxABI,
     functionName: 'addInput',
     args: [
-      '0x11780dFA9c0B1F8C4889BdE71420725476d9e205', // _dapp address
+      CARTESI_DAPP_ADDRESS, // _dapp address fetched from config file
       `0x${Buffer.from(userInput).toString('hex')}`, // _input as bytes
     ],
   });
