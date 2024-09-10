@@ -1,6 +1,8 @@
 // update with your ngrok server url or the deployed url
 export const NEXT_PUBLIC_URL =
-  process.env.NODE_ENV == 'development' ? 'https://bd60-183-83-54-24.ngrok-free.app' : 'https://zizzamia.xyz';
+  process.env.NODE_ENV == 'development'
+    ? 'http://localhost:3000'
+    : 'https://cartesi-frame.vercel.app/';
 
 // config for Cartesi to send inputs and read outputs
 export const CARTESI_INPUT_BOX_ADDR = '0x59b22D57D4f067708AB0c00552767405926dc768'; // no need to change
