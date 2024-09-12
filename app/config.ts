@@ -1,7 +1,7 @@
 // update with your ngrok server url or the deployed url
 export const NEXT_PUBLIC_URL =
   process.env.NODE_ENV == 'development'
-    ? 'https://bd55-183-83-54-24.ngrok-free.app'
+    ? 'https://b3a6-183-83-54-24.ngrok-free.app'
     : 'https://cartesi-frame.vercel.app/';
 
 // config for Cartesi to send inputs and read outputs
@@ -12,3 +12,6 @@ export const CARTESI_NODE_INSPECT_ENDPOINT = 'https://toupper.fly.dev/inspect'; 
 
 // get a neynar api key from https://neynar.com/
 export const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY || 'YOUR_NEYNAR_API_KEY';
+
+// an example url to redirect to  
+export const REDIRECT_URL = 'https://github.com/Mugen-Builders/farcaster-frame-cartesi';

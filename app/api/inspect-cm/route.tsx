@@ -1,6 +1,6 @@
 import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
-import { NEXT_PUBLIC_URL, CARTESI_NODE_INSPECT_ENDPOINT } from '../../config';
+import { NEXT_PUBLIC_URL, CARTESI_NODE_INSPECT_ENDPOINT, REDIRECT_URL } from '../../config';
 import { ethers } from 'ethers';
 
 export const runtime = 'edge'
@@ -33,9 +33,9 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     getFrameHtmlResponse({
       buttons: [
         {
-          label: 'Scream Again',
-          action: 'post',
-          target: NEXT_PUBLIC_URL,
+          label: 'Github Repo',
+          action: 'link',
+          target: REDIRECT_URL,
         },
       ],
       image: {
@@ -46,10 +46,6 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
 }
 
 export async function POST(req: NextRequest): Promise<Response> {
-  return getResponse(req);
-}
-
-export async function GET(req: NextRequest): Promise<Response> {
   return getResponse(req);
 }
 
