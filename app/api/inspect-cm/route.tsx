@@ -35,12 +35,12 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         {
           label: 'Scream Again',
           action: 'post',
+          target: NEXT_PUBLIC_URL,
         },
       ],
       image: {
         src: imageUrl,
       },
-      postUrl: NEXT_PUBLIC_URL,
     }),
   );
 }
